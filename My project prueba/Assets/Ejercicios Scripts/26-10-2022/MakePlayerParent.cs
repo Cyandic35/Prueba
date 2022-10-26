@@ -6,9 +6,14 @@ public class MakePlayerParent : PlayerTrigger
 {
     public Transform platform;
 
+    private void Update()
+    {
+        transform.position = platform.position;
+    }
+
     public override void OnPlayerEnter(GameObject playerObject)
     {
-        playerObject.transform.parent = platform;
+        playerObject.transform.parent = transform;
     }
 
     public override void OnPlayerExit(GameObject playerObject)
