@@ -7,11 +7,16 @@ public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
     public float movementSpeed = 5;
-    public float jumpForce = 10;
+    public float jumpForce = 15;
     private float xDirection;
+
     public Transform[] groundCheck;
     public LayerMask groundMask;
-    public float checkgroundDistance = 0.2f;
+    public float checkgroundDistance = 1f;
+
+    public FixedJoystick myJoystick;
+
+    public Animator playerSpriteAnimator;
 
     private void Start()
     {
@@ -20,9 +25,36 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        xDirection = Input.GetAxisRaw("Horizontal");
+        xDirection = myJoystick.Horizontal;
 
-        if (Input.GetButtonDown("Jump") && IsGrounded())
+        playerSpriteAnimator.SetFloat("Speed", Mathf.Abs(xDirection));
+
+        if (myJoystick.Vertical > 0.7f && IsGrounded())
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        }
+
+        if (rb.velocity.x > 0)
+        {
+            transform.localScale = Vector3.one;
+        }
+        else if (rb.velocity.x < 0)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
+        if (rb.velocity.y != 0)
+        {
+            playerSpriteAnimator.SetBool("IsJumping", true);
+        }
+        else
+        {
+            playerSpriteAnimator.SetBool("IsJumping", false);
+        }
+    }
+
+    public void Jump()
+    {
+        if (IsGrounded())
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
