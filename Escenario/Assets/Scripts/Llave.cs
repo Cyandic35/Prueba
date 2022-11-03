@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Coin : PlayerTrigger
+public class Llave : PlayerTrigger
 {
     public int amountToGive = 1;
 
     public override void OnPlayerEnter(GameObject playerObject)
     {
-        coinCounter counter = playerObject.GetComponent<coinCounter>();
-        counter.getCoins(amountToGive);
+        llaveCounter counter = playerObject.GetComponent<llaveCounter>();
+        counter.getLlaves(amountToGive);
         gameObject.SetActive(false);
     }
 }

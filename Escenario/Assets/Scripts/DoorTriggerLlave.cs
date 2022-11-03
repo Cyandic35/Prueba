@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorTrigger : PlayerTrigger
+public class DoorTriggerLlave : PlayerTrigger
 {
     public Animator DoorAnimator;
 
