@@ -9,6 +9,8 @@ public class LlaveCounter : MonoBehaviour
 
     public Text llaveText;
 
+    public GameObject candado;
+
     public void getLlaves(int llaveAmount)
     {
         currentLlaves += llaveAmount;
@@ -22,5 +24,17 @@ public class LlaveCounter : MonoBehaviour
             Debug.LogError("Recuerda pasar el objeto en Unity.");
         }
         llaveText.text = currentLlaves.ToString();
+    }
+
+    public void Update()
+    {
+        if (currentLlaves <= 0)
+        {
+            candado.SetActive(false);
+        }
+        else
+        {
+            candado.SetActive(true);
+        }
     }
 }
