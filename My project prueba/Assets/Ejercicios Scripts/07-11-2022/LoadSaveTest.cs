@@ -8,6 +8,8 @@ public class LoadSaveTest : MonoBehaviour
     private string nameKey = "playerName";
     public Text nameText;
 
+    public InputField myInputField;
+
     private void Start()
     {
         Debug.Log("el jugador se llama " + PlayerPrefs.GetString(nameKey));
@@ -15,7 +17,7 @@ public class LoadSaveTest : MonoBehaviour
 
     public void SavePlayerName()
     {
-        PlayerPrefs.SetString(nameKey, nameText.text);
+        PlayerPrefs.SetString(nameKey, myInputField.textComponent.text);
     }
 
     // Update is called once per frame
