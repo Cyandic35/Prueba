@@ -16,6 +16,7 @@ public class ClickerManager : MonoBehaviour
     public Text ClicksTotalText;
 
     private float TotalClicks;
+    public int targetNumberOfClick = 10;
 
     public void StartCountDown()
     {
@@ -53,5 +54,23 @@ public class ClickerManager : MonoBehaviour
     {
         TotalClicks = 0;
         ClicksTotalText.text = TotalClicks.ToString();
+    }
+
+    private void CheckWinningCondition()
+    {
+        if (TotalClicks >= targetNumberOfClick)
+        {
+            //int maxScore = PlayerPrefs.GetInt(maxScoreKey);
+            //if (TotalClicks > maxScore)
+            //{
+            //    gameOverText.text = "Que crack, rompiste el record de " + targetNumberOfClick + " con tus " + TotalClicks + " pulsadas.";
+
+            //    PlayerPrefs.SetInt(maxScoreKey, TotalClicks);
+            //}
+            //else
+            //{
+            //    gameOverText.text = "Ta weno, pasaste el mínimo de ";
+            //}
+        }
     }
 }
