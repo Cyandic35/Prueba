@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour
     public float speed = 10;
 
     private string playerTag = "Player";
+    private string wallTag = "Wall";
 
     private void Update()
     {
@@ -18,6 +19,10 @@ public class Bullet : MonoBehaviour
         if (collision.gameObject.CompareTag(playerTag))
         {
             Destroy(gameObject);
+        }
+        if (collision.gameObject.CompareTag(wallTag))
+        {
+            FindObjectOfType<LeveManager>();
         }
     }
 }
