@@ -13,10 +13,18 @@ public class Health : MonoBehaviour
 
     public Text healthText;
 
+    public Image healthBar;
+
+    public void UpdateHealthBar()
+    {
+        healthBar.fillAmount = Mathf.InverseLerp(0, MaxHealth, currentHealth);
+    }
+
     private void Start()
     {
         InitialPosition = transform.position;
         currentHealth = MaxHealth;
+        UpdateHealthBar();
         if (healthText != null)
         {
             healthText.text = currentHealth.ToString();
@@ -45,6 +53,7 @@ public class Health : MonoBehaviour
             Debug.Log("Sigues vivo, pero te faltan " + currentHealth + " para saspicharla.");
             //healthText.text = currentHealth.ToString();
         }
+        UpdateHealthBar();
     }
 
     public virtual void Die()
