@@ -14,6 +14,6 @@ public class LoadPlayerName : MonoBehaviour
 
     public void LoadName()
     {
-        PlayerNameText.text = PlayerPrefs.GetString("name");
+        PlayerNameText.text = PlayerPrefs.GetString("Name");
     }
 }
