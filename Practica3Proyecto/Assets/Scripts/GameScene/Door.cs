@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    private Animator doorAnimator;
+    public Animator doorAnimator;
     private bool animatorBoolState = true;
 
     private void Start()
@@ -14,7 +14,7 @@ public class Door : MonoBehaviour
 
     public void UseDoor()
     {
-        doorAnimator.SetBool("IsOpen", animatorBoolState);
+        doorAnimator.SetBool("Abierta", animatorBoolState);
         animatorBoolState = !animatorBoolState;
     }
 }

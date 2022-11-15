@@ -812,7 +812,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-23384
+  m_Name: pb_Mesh25234
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3867,7 +3867,7 @@ MeshRenderer:
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
+  m_SelectedEditorRenderState: 2
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -4268,7 +4268,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-85588
+  m_Name: pb_Mesh25168
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4432,7 +4432,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-102736
+  m_Name: pb_Mesh25156
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4596,7 +4596,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-17064
+  m_Name: pb_Mesh25198
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4832,7 +4832,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-26100
+  m_Name: pb_Mesh25070
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5007,7 +5007,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14c80b59c8fe15d45a050c914fa9cbe7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InteractionDistance: 1.5
+  InteractionDistance: 1
   InteractionMask:
     serializedVersion: 2
     m_Bits: 64
@@ -5224,7 +5224,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1705576873088201423}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.04086533, y: 0.7948571, z: 1.9199694}
@@ -5327,7 +5327,7 @@ GameObject:
   - component: {fileID: 4820851767707087489}
   - component: {fileID: 4820851767697235297}
   - component: {fileID: 4820851767706726050}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5346,6 +5346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43c07c826c2a39048a3c1b3d551b1da9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doorAnimator: {fileID: 4820851767697235297}
 --- !u!4 &4820851767707087489
 Transform:
   m_ObjectHideFlags: 0
@@ -5450,7 +5451,7 @@ GameObject:
   - component: {fileID: 5564829914386503416}
   - component: {fileID: 6643852869304220036}
   - component: {fileID: 3700793862375482799}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DoorFrame
   m_TagString: Untagged
   m_Icon: {fileID: 0}

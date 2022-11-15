@@ -8,7 +8,7 @@ public class PlayerInteraction : MonoBehaviour
     public LayerMask InteractionMask;
     public Camera PlayerCam;
 
-    private void Start()
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
@@ -16,10 +16,10 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
-    public void CheckForInteraction()
+    private void CheckForInteraction()
     {
         RaycastHit ray;
-        if (Physics.Raycast(PlayerCam.transform.position, PlayerCam.transform.right, out ray, InteractionDistance, InteractionMask))
+        if (Physics.Raycast(PlayerCam.transform.position, PlayerCam.transform.forward, out ray, InteractionDistance, InteractionMask))
         {
             InteractableObject interactableObject = ray.collider.gameObject.GetComponent<InteractableObject>();
             if (interactableObject != null)
