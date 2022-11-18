@@ -2,10 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class idleState : MonoBehaviour, IState
+public class idleState : State
 {
-    public IState RunCurrentState()
+    public float distanceToStartChasing = 3;
+    public State chaseState;
+
+    public override State RunCurrentState()
     {
-        return this;
+        if (Vector3.Distance(transform.position, player.position) < distanceToStartChasing)
+        {
+            return chaseState;
+        }
+        else
+        {
+            agent.speed = 0;
+            return this;
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, distanceToStartChasing);
     }
 }

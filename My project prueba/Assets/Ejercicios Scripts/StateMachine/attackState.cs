@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class attackState : MonoBehaviour, IState
+public class attackState : State
 {
-    public IState RunCurrentState()
+    public override State RunCurrentState()
     {
         return this;
     }

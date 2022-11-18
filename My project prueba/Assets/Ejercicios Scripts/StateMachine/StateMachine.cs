@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class StateMachine : MonoBehaviour
 {
-    public IState currentState;
+    public State currentState;
 
     private void Update()
     {
@@ -14,7 +14,7 @@ public class StateMachine : MonoBehaviour
 
     private void RunStateMachine()
     {
-        IState nextState = currentState.RunCurrentState();
+        State nextState = currentState.RunCurrentState();
         if (nextState != null)
         {
             currentState = nextState;
