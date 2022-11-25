@@ -1,14 +1,27 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TetrisBlock : MonoBehaviour
 {
+    public Vector3 rotationPoint = Vector3.zero;
+
     public float timeToFall = 0.8f;
     private float timeSinceLastMovementDown = 0;
 
-    private int width = 10;
-    private int height = 20;
+    private static int width = 10;
+    private static int height = 20;
+
+    private static Transform[,] grid = new Transform[width, height];
+
+    private void Start()
+    {
+        if (!ValidMovement())
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        }
+    }
 
     private void Update()
     {
@@ -28,6 +41,14 @@ public class TetrisBlock : MonoBehaviour
                 transform.position -= Vector3.right;
             }
         }
+        else if (Input.GetKeyDown(KeyCode.Space))
+        {
+            transform.RotateAround(transform.TransformPoint(rotationPoint), Vector3.forward, 90);
+            if (!ValidMovement())
+            {
+                transform.RotateAround(transform.TransformPoint(rotationPoint), Vector3.forward, -90);
+            }
+        }
         if (Time.time - timeSinceLastMovementDown > (Input.GetKey(KeyCode.S) ? timeToFall / 10 : timeToFall))
         {
             transform.position += Vector3.down;
@@ -36,7 +57,53 @@ public class TetrisBlock : MonoBehaviour
             {
                 transform.position -= Vector3.down;
                 this.enabled = false;
+                AddToGrid();
+                CheckForLine();
+                FindObjectOfType<Spawner>().SpawnBlock();
             }
+        }
+    }
+
+    public void CheckForLine()
+    {
+        for (int i = height - 1; i >= 0; i--)
+        {
+            if (CompleteLine(i))
+            {
+                DeleteLine(i);
+                RowDown(i);
+            }
+        }
+    }
+
+    private void DeleteLine(int column)
+    {
+        for (int i = 0; i < width; i++)
+        {
+            Destroy(grid[i, column].gameObject);
+            grid[i, column] = null;
+        }
+    }
+
+    private bool CompleteLine(int column)
+    {
+        for (int i = 0; i < width; i++)
+        {
+            if (grid[i, column] == null)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void AddToGrid()
+    {
+        foreach (Transform child in transform)
+        {
+            int roundedX = Mathf.RoundToInt(child.position.x);
+            int roundedY = Mathf.RoundToInt(child.position.y);
+            grid[roundedX, roundedY] = child;
         }
     }
 
@@ -46,11 +113,27 @@ public class TetrisBlock : MonoBehaviour
         {
             int roundedX = Mathf.RoundToInt(child.position.x);
             int roundedY = Mathf.RoundToInt(child.position.y);
-            if (roundedX < 0 || roundedX >= width || roundedY < 0 || roundedY >= height)
+            if (roundedX < 0 || roundedX >= width || roundedY < 0 || roundedY >= height || grid[roundedX, roundedY] != null)
             {
                 return false;
             }
         }
         return true;
+    }
+
+    public void RowDown(int column)
+    {
+        for (int i = column; i < height; i++)
+        {
+            for (int j = 0; j < width; j++)
+            {
+                if (grid[j, i] != null)
+                {
+                    grid[j, i - 1] = grid[j, i];
+                    grid[j, i] = null;
+                    grid[j, i - 1].position += Vector3.down;
+                }
+            }
+        }
     }
 }
