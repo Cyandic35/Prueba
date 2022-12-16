@@ -8,11 +8,11 @@ public class PointCounter : MonoBehaviour
     public int currentPoints;
 
     public Text pointText;
+    public Text finalText;
 
     public void getCoins(int pointAmount)
     {
         currentPoints += pointAmount;
-
         if (pointText != null)
         {
             pointText.text = currentPoints.ToString();
@@ -22,5 +22,6 @@ public class PointCounter : MonoBehaviour
             Debug.LogError("Recuerda pasar el objeto en Unity.");
         }
         pointText.text = currentPoints.ToString();
+        finalText.text = currentPoints.ToString();
     }
 }

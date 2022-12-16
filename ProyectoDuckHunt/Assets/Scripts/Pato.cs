@@ -1,27 +1,25 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pato : MonoBehaviour
+public class Pato : GameManager, IDamageable
 {
-    public int MaxHealth;
-    private int currentHealth;
+    private int health = 1;
+    public int pointsGiven = 1;
 
-    public void TakeDamage(int damageTaken)
+    private void getPoints()
     {
-        currentHealth -= damageTaken;
-
-        if (currentHealth <= 0)
-        {
-            Die();
-        }
-        else
-        {
-        }
+        totalPoints += pointsGiven;
     }
 
-    public virtual void Die()
+    public void TakeDamage(int damageAmount)
     {
-        Destroy(gameObject);
+        health -= damageAmount;
+        if (health <= 0)
+        {
+            getPoints();
+            Destroy(gameObject);
+        }
     }
 }
