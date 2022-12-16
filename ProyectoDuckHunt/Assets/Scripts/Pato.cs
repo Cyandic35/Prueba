@@ -3,14 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pato : GameManager, IDamageable
+public class Pato : MonoBehaviour, IDamageable
 {
     private int health = 1;
-    public int pointsGiven = 1;
 
-    private void getPoints()
+    public IEnumerator PatoDestroy()
     {
-        totalPoints += pointsGiven;
+        yield return new WaitForSeconds(10);
+        Destroy(gameObject);
+    }
+
+    private void Start()
+    {
+        StartCoroutine(PatoDestroy());
     }
 
     public void TakeDamage(int damageAmount)
@@ -18,7 +23,7 @@ public class Pato : GameManager, IDamageable
         health -= damageAmount;
         if (health <= 0)
         {
-            getPoints();
+            FindObjectOfType<PointCounter>().getPoints();
             Destroy(gameObject);
         }
     }

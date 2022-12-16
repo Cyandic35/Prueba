@@ -5,23 +5,27 @@ using UnityEngine.UI;
 
 public class PointCounter : MonoBehaviour
 {
-    public int currentPoints;
+    public float points;
 
     public Text pointText;
     public Text finalText;
 
-    public void getCoins(int pointAmount)
+    public void Update()
     {
-        currentPoints += pointAmount;
         if (pointText != null)
         {
-            pointText.text = currentPoints.ToString();
+            pointText.text = points.ToString();
         }
         else
         {
             Debug.LogError("Recuerda pasar el objeto en Unity.");
         }
-        pointText.text = currentPoints.ToString();
-        finalText.text = currentPoints.ToString();
+        pointText.text = points.ToString();
+        finalText.text = points.ToString();
+    }
+
+    public void getPoints()
+    {
+        points++;
     }
 }

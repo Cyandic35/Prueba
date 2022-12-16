@@ -11,11 +11,15 @@ public class GameManager : MonoBehaviour
     public float playTime;
     private float timeLeft;
 
-    private bool timeIsTicking = false;
-
-    public Text PointsTotalText;
-
     public int totalPoints;
+
+    public Text pointText, finalText;
+
+    public void start()
+    {
+        pointText.text = PlayerPrefs.GetInt("pointText").ToString();
+        finalText.text = PlayerPrefs.GetInt("pointText").ToString();
+    }
 
     private void StartGame()
     {
@@ -23,35 +27,24 @@ public class GameManager : MonoBehaviour
         gamePanel.SetActive(true);
     }
 
-    public void StartCountDown()
+    public IEnumerator GameOver()
     {
-        timeLeft = playTime;
-        timeIsTicking = true;
-    }
-
-    private void Update()
-    {
-        if (timeIsTicking)
-        {
-            timeLeft -= Time.deltaTime;
-            timeleftText.text = timeLeft.ToString();
-            if (timeLeft <= 0)
-            {
-                timeIsTicking = false;
-                GameOver();
-            }
-        }
-    }
-
-    private void GameOver()
-    {
+        yield return new WaitForSeconds(playTime);
         gamePanel.SetActive(false);
         endPanel.SetActive(true);
     }
 
+    public void Update()
+    {
+        timeLeft -= Time.deltaTime;
+        timeleftText.text = timeLeft.ToString("f0");
+    }
+
     public void Restart()
     {
+        timeLeft = playTime;
         totalPoints = 0;
-        PointsTotalText.text = totalPoints.ToString();
+        pointText.text = totalPoints.ToString();
+        StartCoroutine(GameOver());
     }
 }
