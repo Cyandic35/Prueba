@@ -7,6 +7,10 @@ public class PatoTriple : MonoBehaviour, IDamageable
 {
     private int health = 3;
 
+    private AudioSource myAudioSource;
+    private SpriteRenderer patoRender;
+    private Collider2D patoCollider;
+
     public IEnumerator PatoDestroy()
     {
         yield return new WaitForSeconds(10);
@@ -15,6 +19,9 @@ public class PatoTriple : MonoBehaviour, IDamageable
 
     private void Start()
     {
+        myAudioSource = GetComponentInChildren<AudioSource>();
+        patoRender = GetComponent<SpriteRenderer>();
+        patoCollider = GetComponent<Collider2D>();
         StartCoroutine(PatoDestroy());
     }
 
@@ -26,7 +33,16 @@ public class PatoTriple : MonoBehaviour, IDamageable
             FindObjectOfType<PointCounter>().getPoints();
             FindObjectOfType<PointCounter>().getPoints();
             FindObjectOfType<PointCounter>().getPoints();
-            Destroy(gameObject);
+            myAudioSource.Play();
+            patoRender.enabled = false;
+            patoCollider.enabled = false;
+            StartCoroutine(DestroyCoroutine());
         }
+    }
+
+    public IEnumerator DestroyCoroutine()
+    {
+        yield return new WaitForSeconds(myAudioSource.clip.length);
+        Destroy(gameObject);
     }
 }

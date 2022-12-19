@@ -31,6 +31,8 @@ public class MovingCube : MonoBehaviour
             lastCube = GameObject.FindGameObjectWithTag("Initial").GetComponent<MovingCube>();
         }
 
+        transform.localScale = new Vector3(lastCube.transform.localScale.x, transform.localScale.y, lastCube.transform.localScale.z);
+
         currentCube = this;
     }
 
@@ -74,14 +76,39 @@ public class MovingCube : MonoBehaviour
         CreateFallingCube(fallingCubeSize, fallingCubePos);
     }
 
+    private void SplitCubeOnX(float difference, float dir)
+    {
+        float newSize = lastCube.transform.localScale.x - Math.Abs(difference);
+        float fallingCubeSize = transform.localScale.x - newSize;
+        float newPos = transform.position.x + (difference / 2);
+
+        transform.position = new Vector3(newPos, transform.position.y, transform.position.z);
+        transform.localScale = new Vector3(newSize, transform.localScale.y, transform.localScale.z);
+
+        float cubeEdge = transform.position.x + (newSize / 2) * dir;
+        float fallingCubePos = cubeEdge + fallingCubeSize / 2 * dir;
+
+        CreateFallingCube(fallingCubeSize, fallingCubePos);
+    }
+
     public void CreateFallingCube(float fallingCubeSize, float fallingCubePos)
     {
         var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
 
-        cube.transform.position = new Vector3(transform.position.x, transform.position.y, fallingCubePos);
-        cube.transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, fallingCubeSize);
+        if (direction == MovingDirection.z)
+        {
+            cube.transform.position = new Vector3(transform.position.x, transform.position.y, fallingCubePos);
+            cube.transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, fallingCubeSize);
+        }
+        else
+        {
+            cube.transform.position = new Vector3(transform.position.x, transform.position.z, fallingCubePos);
+            cube.transform.localScale = new Vector3(transform.localScale.x, transform.localScale.z, fallingCubeSize);
+        }
 
         cube.AddComponent<Rigidbody>();
+
+        Destroy(cube.gameObject, 3);
     }
 
     private float GetDifference()
@@ -95,9 +122,9 @@ public class MovingCube : MonoBehaviour
             return lastCube.transform.position.x - transform.position.x;
         }
     }
+}
 
-    public enum MovingDirection
-    {
-        x, z
-    }
+public enum MovingDirection
+{
+    x, z
 }
