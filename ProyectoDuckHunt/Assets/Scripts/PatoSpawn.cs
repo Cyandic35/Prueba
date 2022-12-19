@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PatoSpawn : MonoBehaviour
 {
-    public GameObject balaPrefab;
+    public GameObject[] balaPrefab;
     public Transform[] shootingPosition;
     public float timeToShoot;
     private float timeSinceLastShoot = 0;
@@ -16,7 +16,8 @@ public class PatoSpawn : MonoBehaviour
         {
             timeSinceLastShoot = 0;
             int rand = Random.Range(0, shootingPosition.Length);
-            Instantiate(balaPrefab, shootingPosition[rand].position, shootingPosition[rand].rotation);
+            int randPato = Random.Range(0, balaPrefab.Length);
+            Instantiate(balaPrefab[randPato], shootingPosition[rand].position, shootingPosition[rand].rotation);
         }
     }
 }

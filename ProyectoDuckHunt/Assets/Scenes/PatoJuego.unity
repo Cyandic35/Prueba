@@ -1817,7 +1817,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 406f86c30ec72a54c805b56aec9899ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  balaPrefab: {fileID: 2613960615642244029, guid: df115e08ac3a3454fa1b056dd80b558b, type: 3}
+  balaPrefab:
+  - {fileID: 6702856489667350065, guid: b383ee084817f414886c0a69ec35263c, type: 3}
+  - {fileID: 6702856489667350065, guid: 156ac8ea6c20e154381828e34ff59bbb, type: 3}
   shootingPosition:
   - {fileID: 436461316}
   - {fileID: 1219576103}

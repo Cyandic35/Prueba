@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 6702856489667350067}
   - component: {fileID: 9077379379804249855}
   - component: {fileID: 2389293620955333286}
-  - component: {fileID: -6826952903407921854}
-  - component: {fileID: 120000023723046981}
+  - component: {fileID: 5707707307798329986}
+  - component: {fileID: 322445753319584622}
   m_Layer: 0
-  m_Name: ObjetivoPlaceHolder
+  m_Name: PatoTriple
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -133,7 +133,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &-6826952903407921854
+--- !u!114 &5707707307798329986
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -142,10 +142,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6702856489667350065}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bcf50b4d43822f4c94a6834d89ae336, type: 3}
+  m_Script: {fileID: 11500000, guid: bcfcd9258be3f464a91ada0b4a1c5ab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &120000023723046981
+--- !u!114 &322445753319584622
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
