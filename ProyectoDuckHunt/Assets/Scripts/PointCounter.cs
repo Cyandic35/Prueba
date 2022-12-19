@@ -28,4 +28,9 @@ public class PointCounter : MonoBehaviour
     {
         points++;
     }
+
+    public void resetPoints()
+    {
+        points = 0;
+    }
 }

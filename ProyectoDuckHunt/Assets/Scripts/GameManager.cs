@@ -43,8 +43,7 @@ public class GameManager : MonoBehaviour
     public void Restart()
     {
         timeLeft = playTime;
-        totalPoints = 0;
-        pointText.text = totalPoints.ToString();
+        FindObjectOfType<PointCounter>().resetPoints();
         StartCoroutine(GameOver());
     }
 }
